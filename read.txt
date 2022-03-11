@@ -1,4 +1,0 @@
-npx create-react-app my-app
-npm start
-npm run build
-eject // 弹出，弹出项目中配置文件，同时对项目造成不可逆的结构性改变

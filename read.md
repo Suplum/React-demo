@@ -20,9 +20,13 @@ REST API
 `npm i json-server -g`
 
 `json-server --watch db.json`
+`json-server --watch db.json --port 3001`
 
 `npm i json-server --dev-save`
 
 配置：`"json-server": "json-server __json_server_mock__/db.json --watch"`
 
 状态提升
+
+`undefined.name`
+`undefined?.name`

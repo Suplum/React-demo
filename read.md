@@ -30,3 +30,5 @@ REST API
 
 `undefined.name`
 `undefined?.name`
+
+npm i qs -g

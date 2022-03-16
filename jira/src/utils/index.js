@@ -38,11 +38,14 @@ export const cleanObject = (object) => {
 // log()#3 // 发现timeout#2 取消之，然后设置timeout#3
 // 所以，log()#3 结束后，就只剩timeout#3在独自等待了
 
+// 如果里面有hook就要用hook
 export const useDebounce = (value, delay) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
+    // 每次在value变化以后，设置一个定时器
     const timeout = setTimeout(() => setDebouncedValue(value), delay);
+    // 每次在上一个useEffect处理完以后再运行
     return () => clearTimeout(timeout);
   }, [value, delay]);
 

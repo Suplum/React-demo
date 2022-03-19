@@ -32,3 +32,5 @@ REST API
 `undefined?.name`
 
 npm i qs -g
+
+npm i @types/qs -D

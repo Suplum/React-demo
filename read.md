@@ -34,3 +34,5 @@ REST API
 npm i qs -g
 
 npm i @types/qs -D
+
+npx imooc-jira-tool

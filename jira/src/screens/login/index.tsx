@@ -12,7 +12,7 @@ import React, {FormEvent} from "react";
 // }
 
 // // 鸭子类型（duck typing）：面向接口编程 而不是面向对象编程
-// const a = {id: 1, name: 'jack'}
+// const a: Advance = {id: 1, name: 'jack'}
 // test(a)
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -27,7 +27,7 @@ export const LoginScreen = () => {
         },
         body: JSON.stringify(param)
       }
-    ).then(async (response) => {
+    ).then(async (response: Response) => {
       if (response.ok) {
 
       }

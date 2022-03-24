@@ -36,3 +36,6 @@ npm i qs -g
 npm i @types/qs -D
 
 npx imooc-jira-tool
+
+Detected outdated Service Worker
+npx msw init ./public

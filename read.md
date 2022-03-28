@@ -31,11 +31,13 @@ REST API
 `undefined.name`
 `undefined?.name`
 
-npm i qs -g
+`npm i qs -g`
 
-npm i @types/qs -D
+`npm i @types/qs -D`
 
-npx imooc-jira-tool
+`npx imooc-jira-tool`
 
 Detected outdated Service Worker
-npx msw init ./public
+`npx msw init ./public`
+
+`npm i` 失败： `npm i --legacy-peer-deps`

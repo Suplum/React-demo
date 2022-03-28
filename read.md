@@ -41,3 +41,17 @@ Detected outdated Service Worker
 `npx msw init ./public`
 
 `npm i` 失败： `npm i --legacy-peer-deps`
+
+`npm i antd --save-dev`
+
+`npm i @craco/craco@7.0.0-alpha.3 --save-dev`
+
+`npm install --global yarn`
+`get-ExecutionPolicy`
+`set-ExecutionPolicy RemoteSigned`
+`get-ExecutionPolicy`
+`yarn --v`
+
+`yarn config set ignore-engines true`
+
+`yarn add craco-less-fix`

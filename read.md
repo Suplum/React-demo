@@ -55,3 +55,5 @@ Detected outdated Service Worker
 `yarn config set ignore-engines true`
 
 `yarn add craco-less-fix`
+
+`yarn add @emotion/react @emotion/styled`

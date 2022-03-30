@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
+import { Row } from "compoments/lib";
 import { useAuth } from "context/auth-context";
 import React from "react";
 import { ProjectListScreen } from "screens/project-list";
+import logo from 'assets/logo.svg'
 
 /**
  * grid 和 flex 各自的应用场景
@@ -12,16 +14,15 @@ import { ProjectListScreen } from "screens/project-list";
  * 从布局出发：先规划网格（数量一般比较固定），然后再把元素往里填充
  * 从布局出发，用flex
  * 从内容出发，用grid
- * @returns
  */
 
 export const AuthenticatedApp = () => {
   const { logout } = useAuth();
   return (
     <Container>
-      <Header>
-        <HeaderLeft>
-          <h3>Logo</h3>
+      <Header between={true}>
+        <HeaderLeft gap={true}>
+          <img src={logo} />
           <h3>项目</h3>
           <h3>用户</h3>
         </HeaderLeft>
@@ -29,27 +30,29 @@ export const AuthenticatedApp = () => {
           <button onClick={logout}>登出</button>
         </HeaderRight>
       </Header>
-      <Nav>nav</Nav>
+      {/* <Nav>nav</Nav> */}
       <Main>
         <ProjectListScreen />
       </Main>
-      <Aside>aside</Aside>
-      <Footer>footer</Footer>
+      {/* <Aside>aside</Aside>
+      <Footer>footer</Footer> */}
     </Container>
   );
 };
 
+// const HeaderItem = styled.h3`margin-right: 3rem;`
+
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 6rem calc(100vh - 6rem);
-  grid-template-columns: 20rem 1fr 20rem;
+  grid-template-rows: 6rem 1fr;
+  /* grid-template-columns: 20rem 1fr 20rem;
   grid-template-areas:
     "header header header"
     "nav main aside"
     "footer footer footer"
-  ;
+  ; */
   height: 100vh;
-  grid-gap: 10rem;
+  /* grid-gap: 10rem; */
 `
 
 // const PageHeader = styled.header`
@@ -61,21 +64,20 @@ const Container = styled.div`
 //   height: calc(100vh - 6rem);
 // `
 
-const Header = styled.header`
-  grid-area: header;
+// grid-area 用来给grid子元素起名字
+const Header = styled(Row)`
+  /* grid-area: header; */
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
-const HeaderLeft = styled.div`
-  display: flex;
-  align-items: center;
-`
+const HeaderLeft = styled(Row)`
+`;
 
-const HeaderRight = styled.div``
-const Main = styled.main`grid-area: main`
-const Nav = styled.nav`grid-area: nav`
-const Aside = styled.aside`grid-area: aside`
-const Footer = styled.footer`grid-area: footer`
+const HeaderRight = styled.div``;
+const Main = styled.main``;
+// const Nav = styled.nav`grid-area: nav;`
+// const Aside = styled.aside`grid-area: aside;`
+// const Footer = styled.footer`grid-area: footer;`

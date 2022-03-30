@@ -57,3 +57,5 @@ Detected outdated Service Worker
 `yarn add craco-less-fix`
 
 `yarn add @emotion/react @emotion/styled`
+
+`yarn add dayjs`

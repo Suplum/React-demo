@@ -19,17 +19,21 @@ import { LongButton } from "unauthenticated-app";
 // test(a)
 const apiUrl = process.env.REACT_APP_API_URL;
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({onError}: {onError:(error:Error)=>void}) => {
   const { register, user } = useAuth();
 
   // HTMLFormElement extends Element
-  const handleSubmit = (values: {username: string, password: string}) => {
+  const handleSubmit = ({cpassword, ...values}: {username: string, password: string, cpassword: string}) => {
     // event.preventDefault();
     // const username = (event.currentTarget.elements[0] as HTMLInputElement)
     //   .value;
     // const password = (event.currentTarget.elements[1] as HTMLInputElement)
     //   .value;
-    register(values);
+    if(cpassword !== values.password) {
+      onError(new Error('请确认两次输入的密码相同'))
+      return
+    }
+    register(values).catch(onError);
   };
   return (
     <Form onFinish={handleSubmit}>
@@ -40,6 +44,10 @@ export const RegisterScreen = () => {
       <Form.Item name={'password'} rules={[{required: true, message: '请输入密码'}]}>
         {/* <label htmlFor="password">密码</label> */}
         <Input placeholder={'密码'} type="password" id={"password"} />
+      </Form.Item>
+      <Form.Item name={'cpassword'} rules={[{required: true, message: '请确认密码'}]}>
+        {/* <label htmlFor="password">密码</label> */}
+        <Input placeholder={'确认密码'} type="password" id={"cpassword"} />
       </Form.Item>
       <Form.Item>
         <LongButton htmlType={'submit'} type={"primary"}>注册</LongButton>

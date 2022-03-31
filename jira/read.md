@@ -59,3 +59,7 @@ Detected outdated Service Worker
 `yarn add @emotion/react @emotion/styled`
 
 `yarn add dayjs`
+
+`yarn add jira-dev-tool@next`
+
+`npm i react-query  --save-dev`

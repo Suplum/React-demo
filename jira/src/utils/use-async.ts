@@ -37,6 +37,7 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?:typeof defau
 
   // run用来触发异步请求
   const run = (promise: Promise<D>) => {
+    console.log(2)
     if(!promise || !promise.then) {
       throw new Error('请传入 Promise 类型数据')
     }
@@ -47,6 +48,7 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?:typeof defau
         return data
       })
       .catch(error => {
+        console.log(3)
         // catch会消化异常，如果不主动抛出，外面是接收不到异常的
         setError(error)
         if(config.throwOnError) return Promise.reject(error);

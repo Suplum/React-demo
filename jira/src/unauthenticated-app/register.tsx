@@ -2,6 +2,7 @@ import { useAuth } from "context/auth-context";
 import React, { FormEvent } from "react";
 import {Button, Form, Input} from 'antd'
 import { LongButton } from "unauthenticated-app";
+import { useAsync } from "utils/use-async";
 
 // interface Base {
 //   id: number
@@ -21,6 +22,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 export const RegisterScreen = ({onError}: {onError:(error:Error)=>void}) => {
   const { register, user } = useAuth();
+  const {run, isLoading} = useAsync(undefined, {throwOnError: true})
 
   // HTMLFormElement extends Element
   const handleSubmit = ({cpassword, ...values}: {username: string, password: string, cpassword: string}) => {
@@ -33,7 +35,7 @@ export const RegisterScreen = ({onError}: {onError:(error:Error)=>void}) => {
       onError(new Error('请确认两次输入的密码相同'))
       return
     }
-    register(values).catch(onError);
+    run(register(values)).catch(onError);
   };
   return (
     <Form onFinish={handleSubmit}>
@@ -50,7 +52,7 @@ export const RegisterScreen = ({onError}: {onError:(error:Error)=>void}) => {
         <Input placeholder={'确认密码'} type="password" id={"cpassword"} />
       </Form.Item>
       <Form.Item>
-        <LongButton htmlType={'submit'} type={"primary"}>注册</LongButton>
+        <LongButton loading={isLoading} htmlType={'submit'} type={"primary"}>注册</LongButton>
       </Form.Item>
       {/* <button type={"submit"}>登录</button> */}
     </Form>

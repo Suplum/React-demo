@@ -48,7 +48,7 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?:typeof defau
         return data
       })
       .catch(error => {
-        console.log(3)
+        console.log(3, config.throwOnError)
         // catch会消化异常，如果不主动抛出，外面是接收不到异常的
         setError(error)
         if(config.throwOnError) return Promise.reject(error);

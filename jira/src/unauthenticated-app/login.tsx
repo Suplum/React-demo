@@ -23,15 +23,21 @@ const apiUrl = process.env.REACT_APP_API_URL;
 export const LoginScreen = ({onError}: {onError:(error:Error)=>void}) => {
   const { login, user } = useAuth();
   const {run, isLoading} = useAsync(undefined, {throwOnError: true})
+  console.log(5)
 
   // HTMLFormElement extends Element
-  const handleSubmit = (values: {username: string, password: string}) => {
+  const handleSubmit = async (values: {username: string, password: string}) => {
     // event.preventDefault();
     // const username = (event.currentTarget.elements[0] as HTMLInputElement)
     //   .value;
     // const password = (event.currentTarget.elements[1] as HTMLInputElement)
     //   .value;
-    run(login(values)).catch(onError);
+    // run(login(values)).catch(onError);
+    try {
+      await run(login(values))
+    } catch(e:any) {
+      onError(e)
+    }
   };
   return (
     <Form onFinish={handleSubmit}>

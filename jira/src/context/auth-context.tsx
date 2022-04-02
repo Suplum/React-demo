@@ -13,6 +13,7 @@ interface AuthForm {
 
 const bootstrapUser = async () => {
   let user = null;
+  console.log(4)
   const token = auth.getToken();
   if (token) {
     const data = await http("me", { token });

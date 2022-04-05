@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import qs from "qs";
-import { cleanObject, useDebounce, useMount } from "utils";
+import { cleanObject, useDebounce, useDocumentTitle, useMount } from "utils";
 import { useHttp } from "utils/http";
 import styled from '@emotion/styled';
 import { Typography } from "antd";
@@ -29,6 +29,8 @@ export const ProjectListScreen = () => {
   // const client = useHttp();
   const {isLoading, error, data: list} = useProject(debouncedParam)
   const {data: users} = useUsers()
+
+  useDocumentTitle('项目列表', false)
 
   // useEffect(() => {
   //   // setIsLoading(true)

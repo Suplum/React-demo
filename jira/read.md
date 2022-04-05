@@ -63,3 +63,5 @@ Detected outdated Service Worker
 `yarn add jira-dev-tool@next`
 
 `npm i react-query  --save-dev`
+
+`yarn add -D @types/react-helmet`

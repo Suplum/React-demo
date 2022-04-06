@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
 
@@ -77,17 +77,20 @@ export const useArray = <V>(value: V, delay?: number) => {
 };
 
 export const useDocumentTitle = (title: string, keepOnUnmount: boolean = true) => {
-  const oldTitle = document.title;
+  const oldTitle = useRef(document.title).current;
+  // 页面加载时：oldTitle === 旧title
+  // 加载后：oldTitle === 新title
 
   useEffect(() => {
     document.title = title
   }, [title])
 
-  // useEffect(() => {
-  //   return () => {
-  //     if(!keepOnUnmount) {
-  //       document.title = oldTitle
-  //     }
-  //   }
-  // })
+  useEffect(() => {
+    return () => {
+      if(!keepOnUnmount) {
+        // 如果不指定依赖，读到的就是旧title
+        document.title = oldTitle
+      }
+    };
+  }, [keepOnUnmount, oldTitle])
 }

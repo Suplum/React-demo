@@ -65,3 +65,7 @@ Detected outdated Service Worker
 `npm i react-query  --save-dev`
 
 `yarn add -D @types/react-helmet`
+
+`yarn add react-router@6 react-router-dom@6`
+
+`yarn add history`

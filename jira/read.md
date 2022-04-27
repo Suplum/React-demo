@@ -69,3 +69,11 @@ Detected outdated Service Worker
 `yarn add react-router@6 react-router-dom@6`
 
 `yarn add history`
+
+`yarn add @welldone-software/why-did-you-render`
+
+[why-did-you-render](https://github.com/welldone-software/why-did-you-render)
+
+[codesandbox](https://codesandbox.io/s/relaxed-hoover-ol5dv?file=/src/app.js)
+
+[useMemo](https://zh-hans.reactjs.org/docs/hooks-reference.html)

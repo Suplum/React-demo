@@ -8,6 +8,7 @@ import { Button, Dropdown, Menu } from "antd";
 import {Navigate, Route, Routes} from 'react-router'
 import { ProjectScreen } from "screens/project";
 import {BrowserRouter as Router} from 'react-router-dom'
+import { resetRoute } from "utils";
 
 /**
  * grid 和 flex 各自的应用场景
@@ -27,11 +28,12 @@ export const AuthenticatedApp = () => {
       <PageHeader/>
       {/* <Nav>nav</Nav> */}
       <Main>
-        <ProjectListScreen />
+        {/* <ProjectListScreen /> */}
         <Router>
           <Routes>
             <Route path={'/projects'} element={<ProjectListScreen/>}/>
             <Route path={'/projects/:projectId/*'} element={<ProjectScreen/>}/>
+            <Route path="*" element={<Navigate to="/projects" replace={true}/>} />
           </Routes>
         </Router>
       </Main>
@@ -48,7 +50,9 @@ const PageHeader = () => {
   return <Header between={true}>
     <HeaderLeft gap={true}>
       {/* <img src={logo} /> */}
-      <SoftwareLogo width={'8rem'} color={'rgb(38, 132, 255)'}/>
+      <Button type={'link'} onClick={resetRoute}>
+        <SoftwareLogo width={'8rem'} color={'rgb(38, 132, 255)'}/>
+      </Button>
       <h3>项目</h3>
       <h3>用户</h3>
     </HeaderLeft>

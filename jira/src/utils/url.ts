@@ -1,5 +1,6 @@
 import { useMemo } from "react"
-import { useSearchParams } from "react-router-dom"
+import { URLSearchParamsInit, useSearchParams } from "react-router-dom"
+import { cleanObject } from "utils"
 
 /**
  * 返回页面url中，指定键的参数
@@ -15,7 +16,13 @@ export const useUrlQueryParam = <K extends string>(keys: K[]) => {
       // eslint-disable-line react-hooks/exhaustive-deps
       [searchParams]
     ),
-    setSearchParam
+    (params: Partial<{[key in K]: unknown}>) => {
+      // iterator
+      // iterator: https://codesandbox.io/s/upbeat-wood-bum3j?file=/src/index.js
+      const o = cleanObject({...Object.fromEntries(searchParams), ...params}) as URLSearchParamsInit
+      // Object.fromEntries：把键值对列表转换为一个对象
+      return setSearchParam(o)
+    }
   ] as const
 }
 

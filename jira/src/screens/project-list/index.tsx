@@ -21,14 +21,16 @@ export const ProjectListScreen = () => {
   // const [isLoading, setIsLoading] = useState(false)
   // const [error, setError] = useState<null | Error>(null)
 
-  const [, setParam] = useState({
-    name: "",
-    personId: "",
-  });
+  // const [, setParam] = useState({
+  //   name: "",
+  //   personId: "",
+  // });
   // 基本类型，可以放到依赖里；组件状态，可以放到依赖里；非组件状态的对象，绝不可以放到依赖里
   // https://codesandbox.io/s/relaxed-hoover-ol5dv?file=/src/app.js
   const [keys] = useState<('name'|'personId')[]>(['name', 'personId'])
-  const [param] = useUrlQueryParam(['name', 'personId'])
+  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
+  console.log(param, 'param')
+  // setParam({name: '123'})
   const debouncedParam = useDebounce(param, 200);
   // const [list, setList] = useState([]);
   // const client = useHttp();
@@ -69,7 +71,7 @@ export const ProjectListScreen = () => {
   );
 };
 
-ProjectListScreen.whyDidYouRender = true
+ProjectListScreen.whyDidYouRender = false
 
 // class Test extends React.Component<any, any>{
 //   static whyDidYouRender = true

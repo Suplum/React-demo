@@ -12,11 +12,13 @@ import {Project} from 'screens/project-list/list'
 import { useProject } from "utils/project";
 import { useUsers } from "utils/user";
 import { useUrlQueryParam } from "utils/url";
+import { useProjectsSearchParams } from "./util";
 
 // 使用 JS 的同学，大部分的错误都是在runtime（运行时）的时候发现的
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 const apiUrl = process.env.REACT_APP_API_URL;
 export const ProjectListScreen = () => {
+  useDocumentTitle('项目列表', false)
   // const [users, setUsers] = useState([]);
   // const [isLoading, setIsLoading] = useState(false)
   // const [error, setError] = useState<null | Error>(null)
@@ -27,20 +29,23 @@ export const ProjectListScreen = () => {
   // });
   // 基本类型，可以放到依赖里；组件状态，可以放到依赖里；非组件状态的对象，绝不可以放到依赖里
   // https://codesandbox.io/s/relaxed-hoover-ol5dv?file=/src/app.js
-  const [keys] = useState<('name'|'personId')[]>(['name', 'personId'])
-  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
-  console.log(param, 'param')
+
+  // const [keys] = useState<('name'|'personId')[]>(['name', 'personId'])
+
+  // const [param, setParam] = useUrlQueryParam(['name', 'personId'])
+  // const projectsParam = {...param, personId: Number(param.personId) || undefined}
+  // console.log(param, 'param')
   // setParam({name: '123'})
-  const debouncedParam = useDebounce(param, 200);
+  // const debouncedParam = useDebounce(projectsParam, 200);
   // const [list, setList] = useState([]);
   // const client = useHttp();
-  const {isLoading, error, data: list} = useProject(debouncedParam)
+  const [param, setParam] = useProjectsSearchParams()
+  const {isLoading, error, data: list} = useProject(useDebounce(param, 200))
   const {data: users} = useUsers()
 
   console.log(useUrlQueryParam(['name']))
   const test = useUrlQueryParam(['name'])
 
-  useDocumentTitle('项目列表', false)
 
   // useEffect(() => {
   //   // setIsLoading(true)

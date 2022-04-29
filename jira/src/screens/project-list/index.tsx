@@ -6,7 +6,7 @@ import qs from "qs";
 import { cleanObject, useDebounce, useDocumentTitle, useMount } from "utils";
 import { useHttp } from "utils/http";
 import styled from '@emotion/styled';
-import { Typography } from "antd";
+import { Button, Typography } from "antd";
 import { useAsync } from "utils/use-async";
 import {Project} from 'screens/project-list/list'
 import { useProject } from "utils/project";
@@ -40,7 +40,7 @@ export const ProjectListScreen = () => {
   // const [list, setList] = useState([]);
   // const client = useHttp();
   const [param, setParam] = useProjectsSearchParams()
-  const {isLoading, error, data: list} = useProject(useDebounce(param, 200))
+  const {isLoading, error, data: list, retry} = useProject(useDebounce(param, 200))
   const {data: users} = useUsers()
 
   console.log(useUrlQueryParam(['name']))
@@ -76,9 +76,10 @@ export const ProjectListScreen = () => {
         <option value={undefined}>默认选项</option>
         <option value={1}>第一个选项</option>
       </select> */}
+      {/* <Button onClick={retry}>retry</Button> */}
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text>:null}
-      <List loading={isLoading} users={users || []} dataSource={list || []} />
+      <List refresh={retry} loading={isLoading} users={users || []} dataSource={list || []} />
     </Container>
   );
 };

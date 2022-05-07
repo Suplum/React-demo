@@ -13,11 +13,12 @@ import { useProject } from "utils/project";
 import { useUsers } from "utils/user";
 import { useUrlQueryParam } from "utils/url";
 import { useProjectsSearchParams } from "./util";
+import { Row } from "compoments/lib";
 
 // 使用 JS 的同学，大部分的错误都是在runtime（运行时）的时候发现的
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 const apiUrl = process.env.REACT_APP_API_URL;
-export const ProjectListScreen = () => {
+export const ProjectListScreen = (props: {setProjectModalOpen: (isOpen: boolean) => void}) => {
   useDocumentTitle('项目列表', false)
   // const [users, setUsers] = useState([]);
   // const [isLoading, setIsLoading] = useState(false)
@@ -68,7 +69,10 @@ export const ProjectListScreen = () => {
 
   return (
     <Container>
-      <h1>项目列表</h1>
+      <Row between={true}>
+        <h1>项目列表</h1>
+        <Button onClick={() => props.setProjectModalOpen(true)}>创建项目</Button>
+      </Row>
       {/* <select onChange={evt => {
         const value = evt.target.value
         console.log(value, typeof value)
@@ -79,7 +83,13 @@ export const ProjectListScreen = () => {
       {/* <Button onClick={retry}>retry</Button> */}
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text>:null}
-      <List refresh={retry} loading={isLoading} users={users || []} dataSource={list || []} />
+      <List
+        setProjectModalOpen={props.setProjectModalOpen}
+        refresh={retry}
+        loading={isLoading}
+        users={users || []}
+        dataSource={list || []}
+      />
     </Container>
   );
 };

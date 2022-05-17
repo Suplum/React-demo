@@ -18,7 +18,9 @@ import { Row } from "compoments/lib";
 // 使用 JS 的同学，大部分的错误都是在runtime（运行时）的时候发现的
 // 我们希望，在静态代码中，就能找到其中的一些错误 -> 强类型
 const apiUrl = process.env.REACT_APP_API_URL;
-export const ProjectListScreen = (props: {setProjectModalOpen: (isOpen: boolean) => void}) => {
+export const ProjectListScreen = (props: {
+  projectButton: JSX.Element
+}) => {
   useDocumentTitle('项目列表', false)
   // const [users, setUsers] = useState([]);
   // const [isLoading, setIsLoading] = useState(false)
@@ -71,7 +73,8 @@ export const ProjectListScreen = (props: {setProjectModalOpen: (isOpen: boolean)
     <Container>
       <Row between={true}>
         <h1>项目列表</h1>
-        <Button onClick={() => props.setProjectModalOpen(true)}>创建项目</Button>
+        {props.projectButton}
+        {/* <Button onClick={() => props.setProjectModalOpen(true)}>创建项目</Button> */}
       </Row>
       {/* <select onChange={evt => {
         const value = evt.target.value
@@ -84,7 +87,7 @@ export const ProjectListScreen = (props: {setProjectModalOpen: (isOpen: boolean)
       <SearchPanel users={users || []} param={param} setParam={setParam} />
       {error ? <Typography.Text type={"danger"}>{error.message}</Typography.Text>:null}
       <List
-        setProjectModalOpen={props.setProjectModalOpen}
+        projectButton={props.projectButton}
         refresh={retry}
         loading={isLoading}
         users={users || []}

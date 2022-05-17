@@ -80,3 +80,7 @@ Detected outdated Service Worker
 
 
 [useState直接传入函数的含义是惰性初始化，所以用useState保存函数，不能直接传入函数](https://codesandbox.io/s/blissful-water-230u4?file=/src/App.js)
+
+[组件组合 component composition](https://zh-hans.reactjs.org/docs/context.html)
+
+[控制反转](https://zhuanlan.zhihu.com/p/60995312)
